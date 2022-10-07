@@ -6,87 +6,137 @@
       name="viewport"
       content="width=device-width, height=device-height,initial-scale=1.0"
     />
-    <title>Data Wiz</title>
+    <title>SVG Clock</title>
   </head>
-  <link href="stylesheet.css" rel="stylesheet"></link>
+  <link href="stylesheet.css" rel="stylesheet" />
   <body>
     <div id="content">
       <div class="wrapper">
-      <svg id="svg" width="500" height="500" class="circle" viewBox="40 240 120 120">
-        <ellipse cx="100" cy="300" fill="whitesmoke" rx="60" ry="60"></ellipse>
-        <path
-          id="clock-arrow"
-          stroke="black"
-          stroke-width="1px"
-          fill="black"
-          d="M100 300 V250"
-        ></path> 
-        <path
-        id="clock-arrow2"
-        stroke="#395B64"
-        stroke-width="1px"
-        fill="#395B64"
-        d="M100 300 L99 250 L101 250 Z"
-      ></path>
+        <svg
+          id="svg"
+          width="90%"
+          height="90%"
+          class="circle"
+          viewBox="40 240 120 120"
+        >
+          <ellipse
+            cx="100"
+            cy="300"
+            fill="whitesmoke"
+            rx="60"
+            ry="60"
+          ></ellipse>
+          <path
+            id="clock-arrow"
+            stroke="black"
+            stroke-width="1px"
+            fill="black"
+            d="M100 300 V250"
+          ></path>
+          <path
+            id="clock-arrow2"
+            stroke="#395B64"
+            stroke-width="1px"
+            fill="#395B64"
+            d="M100 300 L99 250 L101 250 Z"
+          ></path>
 
-      <path
-        id="clock-arrow3"
-        stroke="#395B64"
-        stroke-width="1px"
-        fill="#395B64"
-        d="M100 300 L99 265 L101 265 Z"
-      ></path>
-        <path stroke="black" stroke-width="2px" d="M100 360 V350 M100 240 V250"></path>
-        <path stroke="black" stroke-width="2px" d="M40 300 H50 M160 300 H150"></path>
-        <circle r="1.5" cx="100" cy="300" stroke="black" stroke-width="0.5" fill="white"></circle>
-      </svg>
-      <br>
-      <br>
-      <h1 id="digital-time"></h1>
-      <br>
-      <h1 id="date">ok</h1>
-      <br>
-    </div>
+          <path
+            id="clock-arrow3"
+            stroke="#395B64"
+            stroke-width="1px"
+            fill="#395B64"
+            d="M100 300 L99 265 L101 265 Z"
+          ></path>
+          <path
+            stroke="black"
+            stroke-width="2px"
+            d="M100 360 V350 M100 240 V250"
+          ></path>
+          <path
+            stroke="black"
+            stroke-width="2px"
+            d="M40 300 H50 M160 300 H150"
+          ></path>
+          <circle
+            r="1.5"
+            cx="100"
+            cy="300"
+            stroke="black"
+            stroke-width="0.5"
+            fill="white"
+          ></circle>
+        </svg>
+        <br />
+        <br />
+        <h1 id="digital-time"></h1>
+        <br />
+        <h1 id="date">ok</h1>
+        <br />
+      </div>
     </div>
     <script>
-      function getDate(){
-
+      function getDate() {
         let today = new Date();
-        let htime=today.getHours();
-        let mtime=today.getMinutes();
-        let stime=today.getSeconds();
+        let htime = today.getHours();
+        let mtime = today.getMinutes();
+        let stime = today.getSeconds();
 
-        let hours = (((htime%12) + (htime/60))/12)*360;
-        let min = (mtime/60)*360;
-        let sec = (stime/60)*360;
+        let hours = (((htime % 12) + htime / 60) / 12) * 360;
+        let min = (mtime / 60) * 360;
+        let sec = (stime / 60) * 360;
 
         let digitalTime = "" + htime + ":" + mtime + ":" + stime;
 
-        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        const days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        const days = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
 
         let month = months[today.getMonth()];
         let year = today.getFullYear();
         let day = days[today.getDay()];
         let dayDate = today.getDate();
 
-        document.getElementById("digital-time").textContent=digitalTime;
-        
-        let dayEnd="th ";
+        document.getElementById("digital-time").textContent = digitalTime;
 
-        if(dayDate===0) dayEnd="st ";
-        else if(dayDate===1) dayEnd="nd ";
-        else if(dayDate===2) dayEnd="rd ";
+        let dayEnd = "th ";
+
+        if (dayDate === 0) dayEnd = "st ";
+        else if (dayDate === 1) dayEnd = "nd ";
+        else if (dayDate === 2) dayEnd = "rd ";
 
         let dateDisplay = day + ", " + dayDate + dayEnd + month + " " + year;
 
-        document.getElementById("date").textContent=dateDisplay;
+        document.getElementById("date").textContent = dateDisplay;
 
         console.log("Hours: " + hours + " Min: " + min + " Sec: " + sec);
-        document.getElementById("clock-arrow").style.transform="rotateZ("+sec+"deg)";
-        document.getElementById("clock-arrow2").style.transform="rotateZ("+min+"deg)";
-        document.getElementById("clock-arrow3").style.transform="rotateZ("+hours+"deg)";
-        setTimeout(getDate,1000);
+        document.getElementById("clock-arrow").style.transform =
+          "rotateZ(" + sec + "deg)";
+        document.getElementById("clock-arrow2").style.transform =
+          "rotateZ(" + min + "deg)";
+        document.getElementById("clock-arrow3").style.transform =
+          "rotateZ(" + hours + "deg)";
+        setTimeout(getDate, 1000);
       }
       //document.getElementById('svg').onmouseover=function(){getDate();};
       //document.getElementById("svg").addEventListener("mouseover",getDate);
