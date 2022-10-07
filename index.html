@@ -82,7 +82,7 @@
         let mtime = today.getMinutes();
         let stime = today.getSeconds();
 
-        let hours = (((htime % 12) + htime / 60) / 12) * 360;
+        let hours = (((htime % 12) + mtime / 60) / 12) * 360;
         let min = (mtime / 60) * 360;
         let sec = (stime / 60) * 360;
 
